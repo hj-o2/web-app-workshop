@@ -1,0 +1,10 @@
+printWidth: 80 # 1行の最大行数
+tabWidth: 2 # インデントのスペースの数
+useTabs: false # インデントにタブを利用する(true)か、スペースを利用する(false)
+semi: true # 文末の；を強制する
+quoteProps: as-needed # オブジェクトリテラルのプロパティ名にクォーテーションを利用するか
+jsxSingleQuote: false # JSX のプロパティに’’を利用する
+trailingComa: all # [ ]や{ }の文末に , を強制する
+bracketSpacing: true # {}の中にスペースを入れる
+arrowParens: always # Arrow演算子の引数を必ず（）で括る
+endOfLine: lf # 改行コードを指定する

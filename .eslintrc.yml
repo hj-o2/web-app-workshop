@@ -1,0 +1,38 @@
+env:
+  browser: true
+  es2021: true
+  node: true
+extends:
+  - plugin:react/recommended
+  - standard
+  - "plugin:@typescript-eslint/recommended"
+  - "plugin:prettier/recommended"
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: latest
+  sourceType: module
+plugins:
+  - react
+  - "@typescript-eslint"
+settings:
+  react:
+    version: detepted
+rules:
+  # 文末のセミコロンを強制
+  semi:
+    - error
+    - always
+  # プロパティ型のチェックを必須にしない
+  react/prop-types: off
+  # TypeScript　で戻り値の宣言を必須にしない
+  "@typescript-eslint/explicit-function-return-type": off
+  # Typescript　で使ってない変数・関数をエラーにする
+  # でも、"_" で始める名前は対象外
+  "@typescript-eslint/no-unused-vars":
+    - error
+    - argsIgnorePattern: "^_"
+      varsIgnorePattern: "^_"
+  prettier/prettier:
+    - error
