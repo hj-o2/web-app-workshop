@@ -31,7 +31,7 @@ rules:
   # Typescript　で使ってない変数・関数をエラーにする
   # でも、"_" で始める名前は対象外
   "@typescript-eslint/no-unused-vars":
-    - error
+    # - error
     - argsIgnorePattern: "^_"
       varsIgnorePattern: "^_"
   prettier/prettier:
