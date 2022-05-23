@@ -4,5 +4,5 @@ export interface IFacility {
      id: string;
      name: string;
      note?: string;
-     System: ISystem;
+     system: ISystem;
 }
