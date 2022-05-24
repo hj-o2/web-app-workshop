@@ -46,7 +46,7 @@ const useStyle = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(1),
     "& > div": {
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(3),
     },
   },
   rightActions: {
@@ -54,6 +54,9 @@ const useStyle = makeStyles((theme) => ({
   },
   cancelButton: {
     color: theme.palette.error.main,
+  },
+  leftMargin: {
+    marginLeft: theme.spacing(3),
   },
 }));
 
@@ -146,6 +149,7 @@ export const Reservation: React.FC = () => {
             render={(data) => {
               return (
                 <DateTimePicker
+                  className={style.leftMargin}
                   value={data.value}
                   onChange={data.onChange}
                   onBlur={data.onBlur}
