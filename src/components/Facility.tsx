@@ -1,20 +1,18 @@
-import React, { ChangeEvent, useCallback, useState } from "react";
-import {
-  Avatar,
-  Button,
-  Chip,
-  Container,
-  Grid,
-  InputLabel,
-  makeStyles,
-  Paper,
-  TextField,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import dayjs from "dayjs";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DoneIcon from "@material-ui/icons/Done";
+import Avatar  from "@material-ui/core/Avatar";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import Container from "@material-ui/core/Container/Container";
+import Paper from "@material-ui/core/Paper/Paper";
+import TextField from "@material-ui/core/TextField/TextField";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Chip from "@material-ui/core/Chip/Chip";
+import Grid from "@material-ui/core/Grid/Grid";
+import Button from "@material-ui/core/Button/Button";
 import { IFacility } from "../models/IFacility";
-import { Controller, useForm } from "react-hook-form";
 
 const initFacility: IFacility = {
   id: "",
@@ -30,7 +28,7 @@ const initFacility: IFacility = {
     lastUpdateUser: {
       displayName: "yao yuki",
       email: "",
-      face: "https://source.unsplash.com/OhKElOkQ3RE",
+      face: "https://source.unsplash.com/IF9TK5Uy-KI",
     },
     lastUpdate: new Date(),
   },
@@ -61,16 +59,6 @@ export const Facility: React.FC = () => {
     defaultValues: initFacility,
     mode: "onBlur",
   });
-  const onNameChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const newFacility: IFacility = {
-        ...facility,
-        name: e.target.value,
-      };
-      setFacility(newFacility);
-    },
-    [facility]
-  );
 
   return (
     <Container maxWidth="sm" className={style.root}>
@@ -81,15 +69,21 @@ export const Facility: React.FC = () => {
           rules={{ required: true }}
           as={
             <TextField
-              label="設備名" 
+              label="設備名"
               fullWidth
               error={!!errors.name}
               helperText={errors.name ? "必須です" : ""}
             />
           }
         />
-
-        <TextField label="詳細" fullWidth multiline value={facility.note} />
+        <Controller
+          control={control}
+          name="note"
+          rules={{ required: true }}
+          as={
+            <TextField label="詳細" fullWidth multiline value={facility.note} />
+          }
+        />
         <InputLabel shrink>登録者</InputLabel>
         <p>
           <Chip
@@ -98,6 +92,7 @@ export const Facility: React.FC = () => {
           />
           {dayjs(system.createDate).format("YYYY-MM-DD HH:mm")}
         </p>
+        <InputLabel shrink>更新者</InputLabel>
         <p>
           <Chip
             label={system.lastUpdateUser.displayName}

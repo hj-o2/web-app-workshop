@@ -5,15 +5,17 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@date-io/dayjs": "1.x",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
+    "@material-ui/pickers": "^3.3.10",
     "dayjs": "^1.11.2",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-hook-form": "6",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "5.x",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
