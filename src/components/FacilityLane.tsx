@@ -12,7 +12,7 @@ type Props = JSX.IntrinsicElements["div"] & {
   reservations: IReservation[];
 };
 
-const useStyle = makeStyles<
+const useStyles = makeStyles<
   Theme,
   {
     backgroundColor: Property.BackgroundColor;
@@ -27,10 +27,10 @@ const useStyle = makeStyles<
 export const FacilityLane: React.FC<Props> = (props) => {
   const { facility, cellWidth, reservations, backgroundColor, ...rootAttr } =
     props;
-  const styles = useStyle({ backgroundColor });
+  const styles = useStyles({ backgroundColor });
   const cells = useMemo(() => {
     const r: JSX.Element[] = [];
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 13; i++) {
       r.push(<div key={i} className="timeCell"></div>);
     }
     return r;
@@ -51,7 +51,7 @@ export const FacilityLane: React.FC<Props> = (props) => {
   }, [reservations, backgroundColor, cellWidth]);
   return (
     <div {...rootAttr}>
-      {bars}
+      {bars}  
       <div className={`laneHeader ${styles.header}`}>
         <p>{facility.name}</p>
       </div>

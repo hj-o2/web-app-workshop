@@ -41,6 +41,6 @@
     "webpack-dev-server": "^4.9.0"
   },
   "scripts": {
-    "st": "yarn webpack-dev-server"
+    "s": "yarn webpack-dev-server"
   }
 }

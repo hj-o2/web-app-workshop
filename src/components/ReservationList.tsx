@@ -1,4 +1,10 @@
-import React, { useMemo } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   indigo,
   lightBlue,
@@ -153,9 +159,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ReservationList: React.FC = () => {
+  const cell = useRef<HTMLDivElement>(null);
+  const [cellWidth, setCellWidth] = useState<number>(0);
   const styles = useStyles();
+  const onResize = useCallback(() => {
+    if (!cell?.current) return;
+    setCellWidth(cell.current.getBoundingClientRect().width);
+  }, [cell]);
+  useEffect(onResize, [cell]);
+  useEffect(() => {
+    addEventListener("resize", onResize);
+    return () => {
+      removeEventListener("resize", onResize);
+    };
+  }, []);
   const headerCells = useMemo(() => {
     const cells: JSX.Element[] = [];
+    cells.push(
+      <div key={8} ref={cell} className="timeCell">
+        8
+      </div>
+    );
     for (let i = 8; i <= 19; i++) {
       cells.push(
         <div key={i} className="timeCell">
@@ -174,7 +198,7 @@ export const ReservationList: React.FC = () => {
       return (
         <FacilityLane
           key={facility.id}
-          cellWidth={30}
+          cellWidth={cellWidth}
           facility={facility}
           reservations={reservations}
           className={styles.lane}
@@ -182,7 +206,7 @@ export const ReservationList: React.FC = () => {
         />
       );
     });
-  }, [styles.lane]);
+  }, [styles.lane, cellWidth]);
 
   return (
     <div>
