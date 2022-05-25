@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { Property } from "csstype";
 import { IReservation } from "../models/IReservation";
 import { makeStyles, Theme } from "@material-ui/core/styles";
@@ -37,16 +37,18 @@ export const ReservationBar: React.FC<PropsType> = (props) => {
   const { reservation, leftOffset, beginHour, hourWidth, backgroundColor } =
     props;
   const { startDate, endDate } = reservation;
+
   const width = useMemo(() => {
-    const width = endDate.diff(startDate, "minute");
     const hours = endDate.diff(startDate, "minute") / 60;
     return hourWidth * hours;
   }, [startDate, endDate, hourWidth]);
+
   const left = useMemo(() => {
     const beginDate = startDate.set("hour", beginHour).startOf("hour");
     const diffStart = startDate.diff(beginDate, "minute") / 60;
     return leftOffset + diffStart * hourWidth;
   }, [beginHour, hourWidth, leftOffset, startDate]);
+
   const style = useStyle({
     width,
     left,
