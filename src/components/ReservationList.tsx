@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import {
   indigo,
   lightBlue,
@@ -9,12 +10,10 @@ import {
   yellow,
 } from "@material-ui/core/colors";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { styles } from "@material-ui/pickers/views/Calendar/Calendar";
 import dayjs from "dayjs";
-import React, { useMemo } from "react";
-import { Link } from "react-router-dom";
 import { IFacility } from "../models/IFacility";
 import { IReservation } from "../models/IReservation";
+import { FacilityLane } from "./FacilityLane";
 
 const dummyFacilities: IFacility[] = [
   {
@@ -165,6 +164,24 @@ export const ReservationList: React.FC = () => {
       );
     }
     return cells;
+  }, []);
+
+  const lanes = useMemo(() => {
+    return dummyReservations.map((facility, index) => {
+      const reservations = dummyReservations.filter(
+        (r) => r.facilityId === facility.id
+      );
+      return (
+        // <FacilityLane
+        //   key={facility.id}
+        //   cellWidth={30}
+        //   facility={facility}
+        //   reservations={reservations}
+        //   className={styles.lane}
+        //   backgroundColor={getColor(index)}
+        // />
+      );
+    });
   }, []);
 
   return (

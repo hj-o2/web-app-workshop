@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { IFacility } from "../models/IFacility";
 import { Property } from "csstype";
 import { IReservation } from "../models/IReservation";
