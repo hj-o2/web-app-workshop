@@ -1,9 +1,19 @@
-import { indigo, lightBlue, lightGreen, orange, purple, red, teal, yellow } from "@material-ui/core/colors";
+import {
+  indigo,
+  lightBlue,
+  lightGreen,
+  orange,
+  purple,
+  red,
+  teal,
+  yellow,
+} from "@material-ui/core/colors";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import { styles } from "@material-ui/pickers/views/Calendar/Calendar";
 import dayjs from "dayjs";
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { IFacility } from "../models/IFacility"
+import { IFacility } from "../models/IFacility";
 import { IReservation } from "../models/IReservation";
 
 const dummyFacilities: IFacility[] = [
@@ -144,14 +154,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ReservationList: React.FC = () => {
+  const styles = useStyles();
+  const headerCells = useMemo(() => {
+    const cells: JSX.Element[] = [];
+    for (let i = 8; i <= 19; i++) {
+      cells.push(
+        <div key={i} className="timeCell">
+          {i}
+        </div>
+      );
+    }
+    return cells;
+  }, []);
+
   return (
     <div>
-      <p>
-        <Link to="/reservation">予約詳細</Link>
-      </p>
-      <p>
-        <Link to="/facility">設備詳細</Link>
-      </p>
+      <div>
+        <div className={styles.lane}>
+          <div className="laneHeader"></div>
+          {headerCells}
+        </div>
+      </div>
     </div>
   );
 };
