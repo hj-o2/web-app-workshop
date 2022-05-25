@@ -167,22 +167,22 @@ export const ReservationList: React.FC = () => {
   }, []);
 
   const lanes = useMemo(() => {
-    return dummyReservations.map((facility, index) => {
+    return dummyFacilities.map((facility, index) => {
       const reservations = dummyReservations.filter(
         (r) => r.facilityId === facility.id
       );
       return (
-        // <FacilityLane
-        //   key={facility.id}
-        //   cellWidth={30}
-        //   facility={facility}
-        //   reservations={reservations}
-        //   className={styles.lane}
-        //   backgroundColor={getColor(index)}
-        // />
+        <FacilityLane
+          key={facility.id}
+          cellWidth={30}
+          facility={facility}
+          reservations={reservations}
+          className={styles.lane}
+          backgroundColor={getColor(index)}
+        />
       );
     });
-  }, []);
+  }, [styles.lane]);
 
   return (
     <div>
@@ -191,6 +191,7 @@ export const ReservationList: React.FC = () => {
           <div className="laneHeader"></div>
           {headerCells}
         </div>
+        {lanes}
       </div>
     </div>
   );
