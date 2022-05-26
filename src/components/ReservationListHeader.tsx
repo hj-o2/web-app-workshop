@@ -1,11 +1,11 @@
 import React, { useCallback, useContext } from "react";
-import dayjs from "dayjs";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { DoubleArrow } from "@material-ui/icons";
 import { DatePicker } from "@material-ui/pickers";
 import { CurrentDateContext } from "./ReservationList";
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -39,7 +39,7 @@ export const ReservationListHeader: React.FC = () => {
       if (!date) return;
       dispatch({ payload: date, type: "ChangeDate" });
     },
-    [dispatch] 
+    [dispatch]
   );
   return (
     <div>
@@ -63,7 +63,12 @@ export const ReservationListHeader: React.FC = () => {
         </div>
       </div>
       <div className={styles.actions}>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to="/facility/"
+        >
           設備の登録
         </Button>
       </div>
