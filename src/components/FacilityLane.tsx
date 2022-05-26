@@ -30,7 +30,7 @@ export const FacilityLane: React.FC<Props> = (props) => {
   const styles = useStyles({ backgroundColor });
   const cells = useMemo(() => {
     const r: JSX.Element[] = [];
-    for (let i = 0; i < 13; i++) {
+    for (let i = 0; i <= 11; i++) {
       r.push(<div key={i} className="timeCell"></div>);
     }
     return r;
